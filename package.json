@@ -1,0 +1,45 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "Just for fun.",
+  "main": "index.js",
+  "scripts": {
+    "start": "tsc && concurrently --kill-others \"tsc -w \" \"nodemon ./out/index.js\" ",
+    "lint": "tslint --project tsconfig.json \"./src/**/*.ts\" --format stylish",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "seb9465"
+  },
+  "keywords": [
+    "angular",
+    "express",
+    "node",
+    "js",
+    "ts"
+  ],
+  "author": "Sebastien Cadorette",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.11.1",
+    "@types/node": "^10.0.2",
+    "nodemon": "^1.17.3",
+    "typescript": "^2.8.3"
+  },
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "@types/cors": "^2.8.4",
+    "@types/morgan": "^1.7.35",
+    "body-parser": "^1.18.2",
+    "codelyzer": "^4.3.0",
+    "concurrently": "^3.5.1",
+    "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "inversify": "^4.13.0",
+    "morgan": "^1.9.0",
+    "reflect-metadata": "^0.1.12",
+    "tslint": "^5.9.1"
+  }
+}
