@@ -25,7 +25,7 @@
     "@types/express": "^4.11.1",
     "@types/node": "^10.0.2",
     "nodemon": "^1.17.3",
-    "typescript": "^2.8.3"
+    "typescript": "^2.9.2"
   },
   "dependencies": {
     "@types/cookie-parser": "^1.4.1",
@@ -40,7 +40,6 @@
     "inversify": "^4.13.0",
     "morgan": "^1.9.0",
     "reflect-metadata": "^0.1.12",
-    "tsc": "^3.5.3",
     "tslint": "^5.9.1"
   }
 }
