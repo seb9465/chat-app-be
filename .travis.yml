@@ -1,0 +1,16 @@
+language: nodejs
+
+cache:
+  directories:
+    - "node_modules"
+
+install:
+- npm install -g @angular/cli
+
+before_script:
+  - npm install
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+script:
+- npm run postinstall
