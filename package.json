@@ -9,7 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "npm run build",
     "build": "tsc",
-    "dev": "tsc && concurrently --kill-others \"tsc -w \" \"nodemon ./out/index.js\" "
+    "dev": "tsc && concurrently --kill-others \"tsc -w \" \"nodemon ./out/index.js\" ",
+    "setup": "npm install"
   },
   "repository": {
     "type": "git",
