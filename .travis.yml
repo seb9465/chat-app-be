@@ -7,9 +7,6 @@ install:
 before_script:
   - npm run postinstall
 
-script:
-  - npm run start
-
 deploy:
   provider: heroku
   api_key: $HEROKU_API_KEY
