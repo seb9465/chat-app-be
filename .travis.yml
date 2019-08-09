@@ -1,13 +1,9 @@
 language: nodejs
 
-cache:
-  directories:
-    - "node_modules"
 
 before_script:
   - npm install
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
+  - npm run postinstall
 
 script:
-- npm run postinstall
+  - npm run start
