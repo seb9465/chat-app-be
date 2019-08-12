@@ -1,14 +1,30 @@
 import { injectable } from "inversify";
 import { Response } from "express";
 import { Mongoose } from 'mongoose';
+import * as dotenv from 'dotenv';
 
 @injectable()
 export class BD {
     // private readonly uri: string = 'mongodb://admin:admin@localhost:27017/chat-test';
-    private readonly uri: string = 'mongodb+srv://admin:admin@chat-test-zpcun.mongodb.net/chat-test?retryWrites=true&w=majority';
+    private uri: string = 'mongodb+srv://admin:admin@chat-test-zpcun.mongodb.net/chat-test?retryWrites=true&w=majority';
     private mongoose: Mongoose;
 
     public constructor() {
+        dotenv.config();
+        
+        const prefix = process.env.MONGO_PREFIX;
+        const host = process.env["MONGO_HOST"];
+        const user = process.env["MONGO_USER"];
+        const pwd = process.env["MONGO_PWD"];
+        const db = process.env["MONGO_DATABASE"];
+        const options = process.env["MONGO_OPTIONS"];
+
+        this.uri = prefix + '://' + user + ':' + pwd + '@' + host + '/' + db;
+
+        if (options) {
+            this.uri += '?' + options;
+        }
+        console.log(this.uri);
         this.mongoose = new Mongoose();
     }
 
