@@ -33,6 +33,7 @@
     "inversify": "^5.0.1"
   },
   "dependencies": {
+    "@types/body-parser": "^1.17.0",
     "@types/cookie-parser": "^1.4.1",
     "@types/cors": "^2.8.4",
     "@types/morgan": "^1.7.35",
