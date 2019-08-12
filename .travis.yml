@@ -1,7 +1,7 @@
 language: nodejs
 
 install:
-  - nvm install v8.9.1
+  - nvm install node
   - npm run setup
 
 before_script:
