@@ -59,9 +59,9 @@ export class App {
         router.get('/', (req: express.Request, res: express.Response) => {
             res.send('Server\'s running.');
         });
-        // router.get('/:name', (req: express.Request, res: express.Response) => {
-        //     res.send('Hello ' + req.params.name);
-        // });
+        router.get('/favicon.ico', (req: express.Request, res: express.Response) => {
+            res.send();
+        });
         this.app.use('/', router);
 
         // this.addRoute(/*SERVICE*/);

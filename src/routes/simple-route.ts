@@ -19,8 +19,7 @@ export class SimpleRoute extends WebService {
         const router: Router = Router();
 
         router.get("/simpleRoute", (req: Request, res: Response) => {
-            this._bd.connectToDb()
-            res.send("Simple Route");
+            this._bd.connectToDb(res);
         });
 
         return router;
