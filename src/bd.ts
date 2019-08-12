@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv';
 
 @injectable()
 export class BD {
-    // private readonly uri: string = 'mongodb://admin:admin@localhost:27017/chat-test';
+    
     private uri: string;
     private mongoose: Mongoose;
 
