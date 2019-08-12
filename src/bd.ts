@@ -5,7 +5,7 @@ import { Response } from "express";
 @injectable()
 export class BD {
     // private readonly uri: string = 'mongodb://admin:admin@localhost:27017/chat-test';
-    private readonly uri: string = 'mongodb+srv://admin:admin@chat-test-zpcun.mongodb.net/test?retryWrites=true&w=majority';
+    private readonly uri: string = 'mongodb://admin:admin@chat-test-zpcun.mongodb.net/test';
     private client: MongoClient;
 
     public constructor() {
