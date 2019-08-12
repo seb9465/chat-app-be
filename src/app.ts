@@ -4,9 +4,10 @@ import * as path from 'path';
 import * as cookieParser from 'cookie-parser';
 import * as logger from 'morgan';
 import * as cors from 'cors';
-import { injectable } from 'inversify';
-// import { WebService } from './WebService';
-// import Types from './Types';
+import { injectable, inject } from 'inversify';
+import { WebService } from './WebService';
+import Types from './Types';
+import { SimpleRoute } from './routes/simple-route';
 
 @injectable()
 export class App {
@@ -15,7 +16,9 @@ export class App {
 
     private app: express.Application;
 
-    public constructor() {
+    public constructor(
+        @inject(Types.SimpleRoute) private simpleRoute: SimpleRoute
+    ) {
         this.app = express();
     }
 
@@ -62,14 +65,14 @@ export class App {
         this.app.use('/', router);
 
         // this.addRoute(/*SERVICE*/);
-        // this.addRoute(this.login);
+        this.addRoute(this.simpleRoute);
 
         this.errorHandeling();
     }
 
-    // private addRoute(service: WebService): void {
-    //     this.app.use(service.mainRoute, service.routes);
-    // }
+    private addRoute(service: WebService): void {
+        this.app.use(service.mainRoute, service.routes);
+    }
 
     private errorHandeling(): void {
         this.app.use((req: express.Request, res: express.Response, next: express.NextFunction) => {
