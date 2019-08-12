@@ -1,7 +1,6 @@
-language: nodejs
+language: node_js
 
 install:
-  - nvm install node
   - npm run setup
 
 before_script:
