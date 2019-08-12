@@ -8,6 +8,7 @@ import { injectable, inject } from 'inversify';
 import { WebService } from './WebService';
 import Types from './Types';
 import { SimpleRoute } from './routes/simple-route';
+import { BD } from './bd';
 
 @injectable()
 export class App {
@@ -17,6 +18,7 @@ export class App {
     private app: express.Application;
 
     public constructor(
+        @inject(Types.BD) private _bd: BD,
         @inject(Types.SimpleRoute) private simpleRoute: SimpleRoute
     ) {
         this.app = express();
@@ -30,6 +32,8 @@ export class App {
             // tslint:disable-next-line:no-console
             return console.log('Server is listening on port ' + port);
         });
+
+        this._bd.registerEvents();
 
         this.mountRoutes();
     }

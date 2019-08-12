@@ -12,6 +12,12 @@ export class BD {
     public constructor() {
         dotenv.config();
 
+        this.configureUri();
+
+        this.mongoose = new Mongoose();
+    }
+
+    public configureUri(): void {
         const prefix = process.env['MONGO_PREFIX'];
         const host = process.env['MONGO_HOST'];
         const user = process.env['MONGO_USER'];
@@ -24,19 +30,25 @@ export class BD {
         if (options) {
             this.uri += '?' + options;
         }
-        
-        this.mongoose = new Mongoose();
+
+        console.log('[DB] URI : ' + this.uri);
+    }
+
+    public registerEvents(): void {
+        this.mongoose.connection.on('connected', () => {
+            console.log('[DB] Connected to ' + this.uri);
+        });
+
+        this.mongoose.connection.on('connecting', () => {
+            console.log('[DB] Connecting to ' + this.uri);
+        });
+
+        this.mongoose.connection.on('error', (err) => {
+            console.error('[DB] Error : ' + err);
+        });
     }
 
     public connectToDb(res: Response): void {
-        this.mongoose.connect(this.uri, { useNewUrlParser: true }, (err) => {
-            if (err) {
-                console.log(err);
-                res.send(err);
-            } else {
-                console.log('WORKING');
-                res.send('WORKING');
-            }
-        });
+        this.mongoose.connect(this.uri, { useNewUrlParser: true });
     }
 }
