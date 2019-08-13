@@ -5,7 +5,7 @@ import * as dotenv from 'dotenv';
 
 @injectable()
 export class BD {
-    
+
     private uri: string;
     private mongoose: Mongoose;
 
@@ -18,12 +18,12 @@ export class BD {
     }
 
     public configureUri(): void {
-        const prefix = process.env['MONGO_PREFIX'];
-        const host = process.env['MONGO_HOST'];
-        const user = process.env['MONGO_USER'];
-        const pwd = process.env['MONGO_PWD'];
-        const db = process.env['MONGO_DATABASE'];
-        const options = process.env['MONGO_OPTIONS'];
+        const prefix: string = process.env['MONGO_PREFIX'];
+        const host: string = process.env['MONGO_HOST'];
+        const user: string = process.env['MONGO_USER'];
+        const pwd: string = process.env['MONGO_PWD'];
+        const db: string = process.env['MONGO_DATABASE'];
+        const options: string = process.env['MONGO_OPTIONS'];
 
         this.uri = prefix + '://' + user + ':' + pwd + '@' + host + '/' + db;
 
