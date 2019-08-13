@@ -43,12 +43,21 @@ export class BD {
             console.log('[DB] Connecting to ' + this.uri);
         });
 
+        // tslint:disable-next-line:typedef
         this.mongoose.connection.on('error', (err) => {
             console.error('[DB] Error : ' + err);
         });
     }
 
     public connectToDb(res: Response): void {
-        this.mongoose.connect(this.uri, { useNewUrlParser: true });
+        this.mongoose.connect(this.uri, { useNewUrlParser: true }).then(
+            () => {
+                res.send('working');
+            },
+            // tslint:disable-next-line:typedef
+            (err) => {
+                console.error('[DB] Error while connecting to the db : ');
+                console.error(err);
+            });
     }
 }
