@@ -1,5 +1,6 @@
 import { injectable } from 'inversify';
 import { Response } from 'express';
+// import { Mongoose, Schema, Model, Document } from 'mongoose';
 import { Mongoose } from 'mongoose';
 import * as dotenv from 'dotenv';
 
@@ -7,15 +8,24 @@ import * as dotenv from 'dotenv';
 export class BD {
 
     private uri: string;
-    private mongoose: Mongoose;
+    // private _userModel: Model<Document>;
+    private _mongoose: Mongoose;
 
     public constructor() {
         dotenv.config();
 
         this.configureUri();
 
-        this.mongoose = new Mongoose();
+        this._mongoose = new Mongoose();
     }
+
+    // Getter - Setter
+
+    get mongoose(): Mongoose {
+        return this._mongoose;
+    }
+
+    // Public functions
 
     public configureUri(): void {
         const prefix: string = process.env['MONGO_PREFIX'];
@@ -35,22 +45,22 @@ export class BD {
     }
 
     public registerEvents(): void {
-        this.mongoose.connection.on('connected', () => {
+        this._mongoose.connection.on('connected', () => {
             console.log('[DB] Connected to ' + this.uri);
         });
 
-        this.mongoose.connection.on('connecting', () => {
+        this._mongoose.connection.on('connecting', () => {
             console.log('[DB] Connecting to ' + this.uri);
         });
 
         // tslint:disable-next-line:typedef
-        this.mongoose.connection.on('error', (err) => {
+        this._mongoose.connection.on('error', (err) => {
             console.error('[DB] Error : ' + err);
         });
     }
 
     public connectToDb(res: Response): void {
-        this.mongoose.connect(this.uri, { useNewUrlParser: true }).then(
+        this._mongoose.connect(this.uri, { useNewUrlParser: true }).then(
             () => {
                 res.send('working');
             },
